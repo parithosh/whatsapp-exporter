@@ -6,7 +6,10 @@ class Message:
         self.received_timestamp = received_timestamp
         self.remote_resource = remote_resource
         self.key_from_me = key_from_me
-        self.data = data
+        try:
+          self.data = data
+        except UnicodeDecodeError:
+          print("unincode error")
         self.media_caption = media_caption
         self.media_wa_type = media_wa_type
         self.received_timestamp_str = Message.__timestamp_to_str(received_timestamp)
@@ -60,6 +63,7 @@ class Chat:
         self.subject = subject
         self.sort_timestamp = sort_timestamp
         self.name = name
+        print(key_remote_jid)
         self.phone_number = key_remote_jid.split("@")[0]
         self.title = self.__get_chat_title()
         self.messages = messages
